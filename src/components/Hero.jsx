@@ -33,11 +33,11 @@ export default function Hero() {
         />
       </div>
 
-      {/* Bottom Left Content */}
-      <div className="absolute bottom-6 md:bottom-12 left-6 md:left-12 z-20 max-w-[420px]">
-        <div className="inline-flex items-center gap-3 mb-3">
-          <span className="w-8 h-[1px] bg-[#f0a850]" />
-          <p className="font-sans text-[11px] font-bold text-[#f0a850] tracking-[0.25em] uppercase">
+      {/* Content (Top on Mobile, Bottom Left on Desktop) */}
+      <div className="absolute top-28 md:top-auto md:bottom-12 left-0 md:left-12 right-0 md:right-auto px-6 md:px-0 z-20 w-full md:max-w-[420px] flex flex-col items-center md:items-start text-center md:text-left">
+        <div className="inline-flex items-center gap-3 mb-3 md:mb-3">
+          <span className="w-8 h-[1px] bg-[#f0a850] hidden md:block" />
+          <p className="font-sans text-[10px] md:text-[11px] font-bold text-[#f0a850] tracking-[0.25em] uppercase">
             Luxury Beach Camping
           </p>
         </div>
@@ -49,8 +49,8 @@ export default function Hero() {
         </p>
       </div>
 
-      {/* Bottom Right CTAs */}
-      <div className="absolute bottom-6 md:bottom-12 right-6 md:right-12 z-20 flex flex-col sm:flex-row gap-3 items-end sm:items-center">
+      {/* CTAs (Bottom Center on Mobile, Bottom Right on Desktop) */}
+      <div className="absolute bottom-8 md:bottom-12 left-0 md:left-auto right-0 md:right-12 px-6 md:px-0 w-full md:w-auto z-20 flex flex-col sm:flex-row gap-3 md:gap-4 items-center md:items-end justify-center md:justify-end">
         <WhatsAppButton text="Book via WhatsApp" size="lg" />
         <Button href="#activities">Explore Camp</Button>
       </div>

@@ -105,8 +105,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative w-full bg-[#050a05] overflow-hidden flex items-center"
-      style={{ height: '100dvh' }}
+      className="relative w-full bg-[#050a05] overflow-hidden flex items-center min-h-[100dvh] py-16"
     >
       {/* Background */}
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/gallery.jpg')" }} />

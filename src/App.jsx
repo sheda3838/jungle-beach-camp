@@ -49,16 +49,10 @@ export default function App() {
         <Accommodation />
       </CinematicTransition>
 
-      <CinematicTransition zIndex={7}>
+      {/* Normal flow ending sections - they scroll up together to end the page naturally */}
+      <div className="relative z-[7] bg-[#050a05] shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
         <Testimonials />
-      </CinematicTransition>
-
-      <CinematicTransition zIndex={8}>
         <Contact />
-      </CinematicTransition>
-
-      {/* Footer stays in normal flow to close out the page normally */}
-      <div className="relative z-[9] bg-black">
         <Footer />
       </div>
 

@@ -101,8 +101,7 @@ function StoryCard({ card, index }) {
       viewport={{ once: true, margin: '-60px' }}
       whileHover={{ scale: 1.025, y: -6 }}
       transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-      className="relative flex-1 min-w-0 rounded-2xl overflow-hidden cursor-default group"
-      style={{ minHeight: 0 }}
+      className="relative flex-1 min-w-0 min-h-[280px] md:min-h-0 rounded-2xl overflow-hidden cursor-default group"
     >
       <div
         className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
@@ -158,7 +157,7 @@ function InfoCard({ card, index }) {
       viewport={{ once: true, margin: '-40px' }}
       whileHover={{ scale: 1.03, y: -4 }}
       transition={{ type: 'spring', stiffness: 280, damping: 24 }}
-      className="relative flex-1 min-w-0 rounded-xl overflow-hidden cursor-default group"
+      className="relative flex-none md:flex-1 min-w-0 rounded-xl overflow-hidden cursor-default group info-card-mobile"
       style={{
         background: 'rgba(255,255,255,0.04)',
         border: '1px solid rgba(255,255,255,0.08)',
@@ -228,19 +227,20 @@ export default function Accommodation() {
         </motion.h2>
 
         {/* Story Cards — 65% */}
-        <div className="flex flex-col md:flex-row gap-3 lg:gap-4" style={{ flex: '65 1 0%', minHeight: 0 }}>
+        <div className="flex flex-col md:flex-row gap-3 lg:gap-4 split-container-65" style={{ flex: '65 1 0%', minHeight: 0 }}>
           {STORY_CARDS.map((card, i) => <StoryCard key={card.id} card={card} index={i} />)}
         </div>
 
         {/* Info Cards — 35% */}
-        <div className="flex flex-col md:flex-row gap-3 lg:gap-4" style={{ flex: '35 1 0%', minHeight: 0 }}>
+        <div className="flex flex-col md:flex-row gap-3 lg:gap-4 split-container-35" style={{ flex: '35 1 0%', minHeight: 0 }}>
           {INFO_CARDS.map((card, i) => <InfoCard key={card.id} card={card} index={i} />)}
         </div>
       </div>
 
       <style>{`
         @media (max-width: 767px) {
-          #accommodation { height: auto !important; max-height: none !important; }
+          #accommodation { height: auto !important; max-height: none !important; padding-bottom: 2rem; }
+          .split-container-65, .split-container-35 { flex: none !important; height: auto !important; }
         }
       `}</style>
     </section>

@@ -176,30 +176,18 @@ export default function Testimonials() {
         </div>
       </motion.div>
 
-      {/* Mobile: Swiper */}
+      {/* Mobile: Vertical Stack */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7, delay: 0.25 }}
         className="md:hidden px-4"
       >
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          slidesPerView={1}
-          spaceBetween={16}
-          centeredSlides={true}
-          loop={true}
-          autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-          pagination={{ clickable: true, bulletClass: 'swiper-bullet', bulletActiveClass: 'swiper-bullet-active' }}
-          grabCursor={true}
-          className="testimonials-swiper pb-10"
-        >
+        <div className="flex flex-col gap-4">
           {TESTIMONIALS.map((review) => (
-            <SwiperSlide key={review.id}>
-              <TestimonialCard review={review} className="mx-1" />
-            </SwiperSlide>
+            <TestimonialCard key={review.id} review={review} className="w-full" />
           ))}
-        </Swiper>
+        </div>
       </motion.div>
 
       {/* Keyframes + Swiper overrides */}
@@ -214,13 +202,6 @@ export default function Testimonials() {
             100% { transform: translateX(calc(-370px * ${TESTIMONIALS.length} - 20px * ${TESTIMONIALS.length})); }
           }
         }
-        .testimonials-swiper .swiper-pagination { bottom: 0; }
-        .testimonials-swiper .swiper-bullet {
-          display: inline-block; width: 6px; height: 6px;
-          border-radius: 9999px; background: rgba(255,255,255,0.2);
-          margin: 0 3px; transition: all 0.3s;
-        }
-        .testimonials-swiper .swiper-bullet-active { background: #f0a850; width: 22px; }
       `}</style>
     </section>
   );
