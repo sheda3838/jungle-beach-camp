@@ -1,9 +1,18 @@
-import React from 'react'
+import React from "react";
+import Hero from "./Hero";
+import About from "./About";
+import Activities from "./Activities";
+import Meals from "./Meals";
+import Gallery from "./Gallery";
 
-function App() {
+export default function App() {
   return (
-    <div className='bg-pink-800'>App</div>
-  )
+    <>
+      <Hero />
+      <About />
+      <Activities />
+      <Gallery />
+      <Meals />
+    </>
+  );
 }
-
-export default App
