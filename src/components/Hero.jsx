@@ -1,11 +1,11 @@
 import React from 'react';
-import Navbar from './Navbar';
+
 import Button from './common/Button';
 import WhatsAppButton from './common/WhatsAppButton';
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-[100dvh] overflow-hidden bg-[#06120b]">
+    <section id="hero" className="relative w-full h-[100dvh] overflow-hidden bg-[#06120b]">
       {/* Background Image & Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-80"
@@ -13,7 +13,6 @@ export default function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#06120b]/30 to-[#06120b]/80 pointer-events-none" />
 
-      <Navbar />
 
       {/* Huge Background Text */}
       <div className="absolute bottom-[40%] md:bottom-[48%] left-1/2 -translate-x-1/2 w-full text-center z-0 pointer-events-none">

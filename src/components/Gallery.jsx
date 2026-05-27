@@ -33,7 +33,7 @@ export default function Gallery() {
 
       {/* Background Overlays */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-80 blur-[3px] pointer-events-none z-0"
+        className="absolute inset-0 bg-cover bg-center opacity-[0.35] pointer-events-none z-0"
         style={{ backgroundImage: "url('/gallery.jpg')" }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#06120b]/80 via-[#050a05]/40 to-[#06120b]/80 z-0 pointer-events-none" />
@@ -61,7 +61,7 @@ export default function Gallery() {
                 src={`/gallery/g${num}.jpg`}
                 alt={`Memory ${num}`}
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-[#06120b]/30 group-hover:bg-[#f0a850]/10 transition-colors duration-500" />
             </div>

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import useEmblaCarousel from 'embla-carousel-react';
 import ActivityCard from './common/ActivityCard';
 
 const ACTIVITIES = [
@@ -50,14 +49,34 @@ const ACTIVITIES = [
 ];
 
 export default function Activities() {
-  const [activeId, setActiveId]           = useState(1);
-  const [swiperInstance, setSwiperInstance] = useState(null);
+  const [activeId, setActiveId] = useState(1);
+  
+  // Initialize Embla Carousel with true infinite looping
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: 'start', dragFree: false }
+  );
+
+  // Sync Embla's active slide with our state
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    const index = emblaApi.selectedScrollSnap();
+    if (ACTIVITIES[index]) {
+      setActiveId(ACTIVITIES[index].id);
+    }
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on('select', onSelect);
+    onSelect(); // Initial sync
+    return () => emblaApi.off('select', onSelect);
+  }, [emblaApi, onSelect]);
 
   const activeActivity = ACTIVITIES.find((a) => a.id === activeId) || ACTIVITIES[0];
 
   const handleCardClick = (id, index) => {
     setActiveId(id);
-    if (swiperInstance) swiperInstance.slideToLoop(index);
+    if (emblaApi) emblaApi.scrollTo(index);
   };
 
   return (
@@ -65,15 +84,21 @@ export default function Activities() {
       id="activities"
       className="relative w-full min-h-[100dvh] flex flex-col justify-center bg-[#050a05] overflow-hidden pt-24 pb-12 lg:py-0"
     >
+      {/* Hidden Image Preloader to eliminate network delay */}
+      <div className="hidden">
+        {ACTIVITIES.map((activity) => (
+          <img key={activity.id} src={activity.bgImage} alt="preload" />
+        ))}
+      </div>
       {/* Dynamic Background */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         <motion.div
           key={activeActivity.id}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 0.6, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: 'easeOut' }}
-          className="absolute inset-0 bg-cover bg-center z-0"
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          className="absolute inset-0 bg-cover bg-center z-0 will-change-[opacity]"
           style={{ backgroundImage: `url('${activeActivity.bgImage}')` }}
         />
       </AnimatePresence>
@@ -100,7 +125,7 @@ export default function Activities() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
             >
               <h2 className="font-serif text-4xl md:text-6xl lg:text-[4.5rem] font-bold text-[#f5ead4] leading-[1.05] mb-6 drop-shadow-2xl">
                 {activeActivity.title}
@@ -112,29 +137,25 @@ export default function Activities() {
           </AnimatePresence>
         </div>
 
-        {/* Right: Swiper */}
+        {/* Right: Embla Carousel */}
         <div className="w-full lg:absolute lg:bottom-12 lg:right-0 lg:w-[55%] flex flex-col justify-end mt-12 lg:mt-0">
           <div className="w-full pl-6 md:pl-12 lg:pl-0">
-            <Swiper
-              loop={true}
-              slidesPerView="auto"
-              spaceBetween={20}
-              centeredSlides={false}
-              grabCursor={true}
-              onSwiper={setSwiperInstance}
-              onSlideChange={(swiper) => setActiveId(ACTIVITIES[swiper.realIndex].id)}
-              className="w-full"
-            >
-              {ACTIVITIES.map((activity, index) => (
-                <SwiperSlide key={activity.id} className="!w-auto py-4">
-                  <ActivityCard
-                    activity={activity}
-                    isActive={activity.id === activeId}
-                    onClick={() => handleCardClick(activity.id, index)}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            {/* Embla Viewport */}
+            <div className="overflow-hidden w-full cursor-grab active:cursor-grabbing" ref={emblaRef}>
+              {/* Embla Container */}
+              <div className="flex gap-5">
+                {ACTIVITIES.map((activity, index) => (
+                  /* Embla Slide */
+                  <div key={activity.id} className="flex-[0_0_auto] min-w-0 py-4">
+                    <ActivityCard
+                      activity={activity}
+                      isActive={activity.id === activeId}
+                      onClick={() => handleCardClick(activity.id, index)}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

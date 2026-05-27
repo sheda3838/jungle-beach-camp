@@ -43,19 +43,24 @@ export default function Meals() {
 
   return (
     <section id="meals" className="relative w-full h-[100dvh] flex flex-col justify-center bg-[#050a05] overflow-hidden pt-12 md:pt-16 lg:pt-20 pb-8 md:pb-12">
+      
+      {/* Preload ALL images (backgrounds & items) into RAM to completely eliminate click lag */}
+      <div className="hidden">
+        {Object.values(MEALS_DATA).map((meal) => (
+          <React.Fragment key={meal.bg}>
+            <img src={meal.bg} alt="preload bg" />
+            {meal.items.map((item) => (
+              <img key={item.id} src={item.image} alt="preload item" />
+            ))}
+          </React.Fragment>
+        ))}
+      </div>
 
       {/* Dynamic Background */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeMeal}
-          initial={{ opacity: 0, scale: 1.02 }}
-          animate={{ opacity: 0.4, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: 'easeInOut' }}
-          className="absolute inset-0 bg-cover bg-center z-0"
-          style={{ backgroundImage: `url('${currentData.bg}')` }}
-        />
-      </AnimatePresence>
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-40 z-0"
+        style={{ backgroundImage: `url('${currentData.bg}')` }}
+      />
 
       {/* Overlays */}
       <div className="absolute inset-0 bg-[#06120b]/70 z-0 pointer-events-none" />
@@ -75,23 +80,14 @@ export default function Meals() {
             <span className="w-8 h-[1px] bg-[#f0a850]" />
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeMeal}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="mb-4 md:mb-6"
-            >
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-[3.5rem] font-bold text-[#f5ead4] leading-tight mb-2 md:mb-4 drop-shadow-2xl">
-                {currentData.title}
-              </h2>
-              <p className="font-sans text-[13px] md:text-[15px] lg:text-[16px] text-[#f5ead4]/80 leading-relaxed font-light drop-shadow-md px-2">
-                {currentData.description}
-              </p>
-            </motion.div>
-          </AnimatePresence>
+          <div className="mb-4 md:mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-[3.5rem] font-bold text-[#f5ead4] leading-tight mb-2 md:mb-4 drop-shadow-2xl">
+              {currentData.title}
+            </h2>
+            <p className="font-sans text-[13px] md:text-[15px] lg:text-[16px] text-[#f5ead4]/80 leading-relaxed font-light drop-shadow-md px-2">
+              {currentData.description}
+            </p>
+          </div>
 
           {/* Tab switcher */}
           <div className="flex items-center p-1.5 bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
@@ -104,10 +100,8 @@ export default function Meals() {
                 }`}
               >
                 {activeMeal === meal && (
-                  <motion.div
-                    layoutId="activeMealTab"
+                  <div
                     className="absolute inset-0 bg-gradient-to-br from-[#f0a850] to-[#c87941] rounded-full shadow-[0_0_20px_rgba(240,168,80,0.3)]"
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
                 <span className="relative z-10">{meal}</span>
@@ -118,8 +112,7 @@ export default function Meals() {
 
         {/* Food Cards Grid */}
         <div className="w-full flex-1 flex flex-col justify-center min-h-0 overflow-y-auto md:overflow-visible hide-scrollbar pb-4 md:pb-0">
-          <motion.div
-            layout
+          <div
             className={`grid grid-cols-2 md:grid-cols-3 ${
               currentData.items.length === 6 ? 'lg:grid-cols-6 lg:max-w-[1100px] mx-auto' :
               currentData.items.length === 5 ? 'lg:grid-cols-5 lg:max-w-[900px] mx-auto' :
@@ -127,12 +120,10 @@ export default function Meals() {
               'lg:grid-cols-2 lg:max-w-[450px] mx-auto'
             } gap-3 md:gap-4 lg:gap-5 w-full`}
           >
-            <AnimatePresence mode="popLayout">
-              {currentData.items.map((item, index) => (
-                <FoodCard key={item.id} item={item} index={index} />
-              ))}
-            </AnimatePresence>
-          </motion.div>
+            {currentData.items.map((item, index) => (
+              <FoodCard key={item.id} item={item} index={index} />
+            ))}
+          </div>
         </div>
       </div>
 
