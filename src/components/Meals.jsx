@@ -1,40 +1,40 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import FoodCard from './FoodCard';
+import FoodCard from './common/FoodCard';
 
 const MEALS_DATA = {
   breakfast: {
-    title: "Morning Freshness",
-    description: "Start your morning with fresh tropical flavors and warm island comfort.",
-    bg: "/meals/bg/breakfast.jpg",
+    title: 'Morning Freshness',
+    description: 'Start your morning with fresh tropical flavors and warm island comfort.',
+    bg: '/meals/bg/breakfast.jpg',
     items: [
-      { id: 'b1', name: 'Bed Tea', image: '/meals/breakfast/bed-tea.jpg' },
+      { id: 'b1', name: 'Bed Tea',        image: '/meals/breakfast/bed-tea.jpg' },
       { id: 'b2', name: 'String Hoppers', image: '/meals/breakfast/string-hoppers.jpg' },
-      { id: 'b3', name: 'Pittu', image: '/meals/breakfast/pittu.jpg' },
-      { id: 'b4', name: 'Roti', image: '/meals/breakfast/roti.jpg' },
-      { id: 'b5', name: 'Sandwich', image: '/meals/breakfast/sandwich.jpg' },
-      { id: 'b6', name: 'Rice & Curry', image: '/meals/breakfast/rice-and-curry.jpg' },
-    ]
+      { id: 'b3', name: 'Pittu',          image: '/meals/breakfast/pittu.jpg' },
+      { id: 'b4', name: 'Roti',           image: '/meals/breakfast/roti.jpg' },
+      { id: 'b5', name: 'Sandwich',       image: '/meals/breakfast/sandwich.jpg' },
+      { id: 'b6', name: 'Rice & Curry',   image: '/meals/breakfast/rice-and-curry.jpg' },
+    ],
   },
   lunch: {
-    title: "Coastal Feast",
-    description: "Enjoy hearty local and coastal meals under the bright tropical sun.",
-    bg: "/meals/bg/lunch.jpg",
+    title: 'Coastal Feast',
+    description: 'Enjoy hearty local and coastal meals under the bright tropical sun.',
+    bg: '/meals/bg/lunch.jpg',
     items: [
-      { id: 'l1', name: 'Rice & Curry', image: '/meals/lunch/rice-and-curry.jpg' },
-      { id: 'l2', name: 'Chicken Rice', image: '/meals/lunch/chiken-rice.jpg' },
+      { id: 'l1', name: 'Rice & Curry',    image: '/meals/lunch/rice-and-curry.jpg' },
+      { id: 'l2', name: 'Chicken Rice',    image: '/meals/lunch/chiken-rice.jpg' },
       { id: 'l3', name: 'Chicken Noodles', image: '/meals/lunch/chiken-noodles.jpg' },
-    ]
+    ],
   },
   dinner: {
-    title: "Campfire Dining",
-    description: "Relax with comforting camp-style meals under the warm glow of the night.",
-    bg: "/meals/bg/dinner.jpg",
+    title: 'Campfire Dining',
+    description: 'Relax with comforting camp-style meals under the warm glow of the night.',
+    bg: '/meals/bg/dinner.jpg',
     items: [
-      { id: 'd1', name: 'Chicken Rice', image: '/meals/dinner/chiken-rice.jpg' },
+      { id: 'd1', name: 'Chicken Rice',    image: '/meals/dinner/chiken-rice.jpg' },
       { id: 'd2', name: 'Chicken Noodles', image: '/meals/dinner/chiken-noodles.jpg' },
-    ]
-  }
+    ],
+  },
 };
 
 export default function Meals() {
@@ -43,48 +43,45 @@ export default function Meals() {
 
   return (
     <section id="meals" className="relative w-full h-[100dvh] flex flex-col justify-center bg-[#050a05] overflow-hidden pt-12 md:pt-16 lg:pt-20 pb-8 md:pb-12">
-      
-      {/* ── Dynamic Background Layer ── */}
+
+      {/* Dynamic Background */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeMeal}
           initial={{ opacity: 0, scale: 1.02 }}
           animate={{ opacity: 0.4, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
+          transition={{ duration: 1.2, ease: 'easeInOut' }}
           className="absolute inset-0 bg-cover bg-center z-0"
           style={{ backgroundImage: `url('${currentData.bg}')` }}
         />
       </AnimatePresence>
 
-      {/* Overlays for depth and readability */}
+      {/* Overlays */}
       <div className="absolute inset-0 bg-[#06120b]/70 z-0 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#06120b]/95 via-transparent to-[#06120b]/95 z-0 pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_10%,_#050a05_100%)] opacity-80 z-0 pointer-events-none" />
 
-      {/* ── Content Container ── */}
+      {/* Content */}
       <div className="relative z-10 w-full h-full max-w-[1400px] mx-auto px-4 md:px-8 lg:px-12 flex flex-col justify-between">
-        
-        {/* Top Content: Headings & Navigation */}
+
+        {/* Heading & Tabs */}
         <div className="flex flex-col items-center text-center shrink-0 w-full max-w-[700px] mx-auto mb-4">
-          
-          {/* Subtle Label */}
           <div className="inline-flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-            <span className="w-8 h-[1px] bg-[#f0a850]"></span>
+            <span className="w-8 h-[1px] bg-[#f0a850]" />
             <p className="font-sans text-[10px] md:text-xs font-bold text-[#f0a850] tracking-[0.3em] uppercase drop-shadow-md">
               Culinary Experience
             </p>
-            <span className="w-8 h-[1px] bg-[#f0a850]"></span>
+            <span className="w-8 h-[1px] bg-[#f0a850]" />
           </div>
 
-          {/* Dynamic Heading & Description */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeMeal}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
               className="mb-4 md:mb-6"
             >
               <h2 className="font-serif text-3xl md:text-4xl lg:text-[3.5rem] font-bold text-[#f5ead4] leading-tight mb-2 md:mb-4 drop-shadow-2xl">
@@ -96,7 +93,7 @@ export default function Meals() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Elegant Tab Switcher */}
+          {/* Tab switcher */}
           <div className="flex items-center p-1.5 bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
             {['breakfast', 'lunch', 'dinner'].map((meal) => (
               <button
@@ -110,7 +107,7 @@ export default function Meals() {
                   <motion.div
                     layoutId="activeMealTab"
                     className="absolute inset-0 bg-gradient-to-br from-[#f0a850] to-[#c87941] rounded-full shadow-[0_0_20px_rgba(240,168,80,0.3)]"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
                 <span className="relative z-10">{meal}</span>
@@ -119,14 +116,14 @@ export default function Meals() {
           </div>
         </div>
 
-        {/* Dynamic Food Cards Grid */}
+        {/* Food Cards Grid */}
         <div className="w-full flex-1 flex flex-col justify-center min-h-0 overflow-y-auto md:overflow-visible hide-scrollbar pb-4 md:pb-0">
-          <motion.div 
+          <motion.div
             layout
             className={`grid grid-cols-2 md:grid-cols-3 ${
-              currentData.items.length === 6 ? 'lg:grid-cols-6 lg:max-w-[1100px] mx-auto' : 
-              currentData.items.length === 5 ? 'lg:grid-cols-5 lg:max-w-[900px] mx-auto' : 
-              currentData.items.length === 3 ? 'lg:grid-cols-3 lg:max-w-[650px] mx-auto' : 
+              currentData.items.length === 6 ? 'lg:grid-cols-6 lg:max-w-[1100px] mx-auto' :
+              currentData.items.length === 5 ? 'lg:grid-cols-5 lg:max-w-[900px] mx-auto' :
+              currentData.items.length === 3 ? 'lg:grid-cols-3 lg:max-w-[650px] mx-auto' :
               'lg:grid-cols-2 lg:max-w-[450px] mx-auto'
             } gap-3 md:gap-4 lg:gap-5 w-full`}
           >
@@ -137,17 +134,11 @@ export default function Meals() {
             </AnimatePresence>
           </motion.div>
         </div>
-
       </div>
 
       <style>{`
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .hide-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
     </section>
   );

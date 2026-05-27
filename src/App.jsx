@@ -1,13 +1,14 @@
-import React from "react";
-import Hero from "./Hero";
-import About from "./About";
-import Activities from "./Activities";
-import Meals from "./Meals";
-import Memories from "./Gallery";
-import Accommodation from "./Accommodation";
-import Testimonials from "./Testimonials";
-import Contact from "./Contact";
-import Footer from "./Footer";
+import React from 'react';
+import Hero          from './components/Hero';
+import About         from './components/About';
+import Activities    from './components/Activities';
+import Memories      from './components/Gallery';
+import Meals         from './components/Meals';
+import Accommodation from './components/Accommodation';
+import Testimonials  from './components/Testimonials';
+import Contact       from './components/Contact';
+import Footer        from './components/Footer';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
       <Testimonials />
       <Contact />
       <Footer />
+      <FloatingWhatsApp />
     </>
   );
 }
