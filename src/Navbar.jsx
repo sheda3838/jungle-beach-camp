@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NAV_LINKS = ['About', 'Gallery', 'Activities', 'Meals', 'Accommodation', 'Testimonials', 'Contact'];
+const NAV_LINKS = ['About', 'Memories', 'Activities', 'Meals', 'Accommodation', 'Testimonials', 'Contact'];
 
 export default function Navbar() {
   return (

@@ -2,17 +2,17 @@ import React from 'react';
 
 export default function Gallery() {
   return (
-    <section id="gallery" className="relative w-full h-[100dvh] bg-[#050a05] overflow-hidden flex flex-col pt-8 pb-6 md:pt-12 md:pb-8">
+    <section id="memories" className="relative w-full h-[100dvh] bg-[#050a05] overflow-hidden flex flex-col pt-8 pb-6 md:pt-12 md:pb-8">
       <style>
         {`
-          .gallery-grid {
+          .memories-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-auto-rows: minmax(100px, 1fr);
             gap: 12px;
           }
           @media (min-width: 1024px) {
-            .gallery-grid {
+            .memories-grid {
               height: 100%;
               grid-template-columns: repeat(4, 1fr);
               grid-template-rows: repeat(5, minmax(0, 1fr));
@@ -45,21 +45,21 @@ export default function Gallery() {
           <div className="inline-flex items-center gap-4 mb-2 md:mb-3">
             <span className="w-10 h-[1px] bg-[#f0a850]"></span>
             <p className="font-sans text-[10px] md:text-xs font-bold text-[#f0a850] tracking-[0.3em] uppercase drop-shadow-md">
-              Memories & Gallery
+              Memories From the Wild
             </p>
           </div>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-[3rem] font-bold text-[#f5ead4] leading-tight drop-shadow-2xl">
-            Captured Wild Moments
+            Memories That Last Forever
           </h2>
         </div>
 
         {/* Gallery Grid (Takes up all remaining vertical space) */}
-        <div className="gallery-grid flex-1 min-h-0 w-full">
+        <div className="memories-grid flex-1 min-h-0 w-full">
           {[1, 2, 4, 6, 7, 8].map((num) => (
             <div key={num} className={`div${num} relative group overflow-hidden rounded-xl md:rounded-2xl bg-white/5`}>
               <img 
                 src={`/gallery/g${num}.jpg`} 
-                alt={`Wild Moment ${num}`} 
+                alt={`Memory ${num}`} 
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
                 loading="lazy"
               />
