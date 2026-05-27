@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactLenis } from 'lenis/react';
+
 import Hero          from './components/Hero';
 import Navbar        from './components/Navbar';
 import About         from './components/About';
@@ -15,8 +15,7 @@ import CinematicTransition from './components/common/CinematicTransition';
 
 export default function App() {
   return (
-    <ReactLenis root options={{ lerp: 0.08, smoothWheel: true }}>
-      <div className="relative w-full bg-[#050a05]">
+    <div className="relative w-full bg-[#050a05]">
       
       {/* Navbar sits at the root to avoid being covered by sliding cards */}
       <Navbar />
@@ -61,6 +60,5 @@ export default function App() {
       </div>
 
     </div>
-    </ReactLenis>
   );
 }

@@ -1,16 +1,72 @@
-# React + Vite
+# Jungle Beach Camp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen.svg)](https://jungle-beach-camp-kohl.vercel.app/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-blue.svg)](https://github.com/sheda3838/jungle-beach-camp)
 
-Currently, two official plugins are available:
+A premium, cinematic single-page landing page designed for a luxury beach camping experience. Built with a focus on immersive storytelling, high-performance animations, and modern UI/UX principles.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Cinematic Hero Section:** Full-screen immersive introduction with parallax and smooth scroll overlays.
+- **Smooth Storytelling Transitions:** Native CSS stacking combined with custom momentum scroll (Lenis) for a buttery-smooth narrative flow.
+- **Interactive Activities Showcase:** Dynamic, hardware-accelerated image backgrounds that crossfade on interaction.
+- **Pre-rendered Meals Experience:** Zero-latency image swapping with hidden RAM preloaders.
+- **Accommodation Overview:** Responsive CSS Grid and Flexbox layouts detailing luxury stays.
+- **Testimonials Section:** Authentic review presentation with responsive layout behaviors.
+- **Mock Contact Form:** Fully styled form with micro-interactions and validation styling.
+- **WhatsApp Integration:** Persistent Floating CTA for high-conversion quick bookings.
+- **Fully Responsive Design:** Tailored layouts spanning from ultra-wide desktops down to mobile screens.
+- **Reusable Architecture:** Component-driven structure prioritizing performance and maintainability.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **React 19**
+- **Vite**
+- **Tailwind CSS**
+- **Framer Motion**
+- **Lucide React** (Icons)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation
+
+1. Clone the repository to your local machine.
+2. Navigate into the project directory and install the dependencies:
+
+```bash
+npm install
+```
+
+## Running Locally
+
+To start the local development server:
+
+```bash
+npm run dev
+```
+Open `http://localhost:5173` in your browser to view the project.
+
+## Build for Production
+
+To create an optimized production build:
+
+```bash
+npm run build
+```
+This command bundles React in production mode and optimizes the build for the best performance. The build artifacts will be stored in the `dist/` directory.
+
+
+## Folder Structure
+
+```text
+src/
+├── assets/          # Static assets, global CSS
+├── components/      # Main page sections (Hero, About, Activities, etc.)
+│   └── common/      # Reusable UI components (Buttons, Cards, Transitions)
+├── App.jsx          # Root component and cinematic flow coordinator
+└── main.jsx         # React application entry point
+
+public/              # Public facing static images and assets
+```
+
+## Credits
+Designed and engineered as a modern, high-performance web experience demonstrating advanced scroll dynamics and cinematic UI design.
+
